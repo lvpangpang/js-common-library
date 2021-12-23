@@ -1,44 +1,31 @@
-import { isFun } from '../data-type'
-
 function handleParams(params) {
-  const list = []
+  const list = [];
   Object.keys(params || {}).forEach((key) => {
-    const val = params[key]
-    if (val === '' || val === null || val === undefined) {
-      return
+    const val = params[key];
+    if (val === "" || val === null || val === undefined) {
+      return;
     }
-    list.push(`${key}=${encodeURIComponent(val)}`)
-  })
-  return list.join('&')
+    list.push(`${key}=${encodeURIComponent(val)}`);
+  });
+  return list.join("&");
 }
 
 function request(http) {
   http.interceptors.request.use(
     (config) => {
-      const glocalConfig = http.prototype.glocalConfig || {}
-      const { headers } = glocalConfig
-      const resultConfig = { ...glocalConfig, ...config }
-      resultConfig.headers = headers // 注意这里，直接赋值headers
-      const { method, transformRequest } = resultConfig
-
-      if (method === 'get') {
-        resultConfig.paramsSerializer = function (params) {
-          return handleParams(params)
-        }
-      }
-
-      if (isFun(transformRequest)) {
-        resultConfig.transformRequest = function (data) {
-          return transformRequest(data)
-        }
-      }
-
-      return resultConfig
+      // console.log(config); // 单个请求的配置
+      const glocalConfig = http.prototype.glocalConfig || {};
+      const glocalHeaders = glocalConfig.headers || {};
+      const { headers } = config;
+      const resultConfig = { ...glocalConfig, ...config }; // 单个请求的配置覆盖全局的请求配置
+      resultConfig.headers = { ...headers, ...glocalHeaders }; // 全局配置的header覆盖单个请求的headers
+      resultConfig.paramsSerializer = handleParams;
+      return resultConfig;
     },
     (error) => {
-      return Promise.reject(error)
+      return Promise.reject(error);
     }
-  )
+  );
 }
 
-export default request
+export default request;
