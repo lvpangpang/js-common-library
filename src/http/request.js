@@ -1,3 +1,4 @@
+// 去掉get请求中的null, '', undefined
 function handleParams(params) {
   const list = [];
   Object.keys(params || {}).forEach((key) => {
@@ -18,8 +19,8 @@ function request(http) {
       const glocalHeaders = glocalConfig.headers || {};
       const { headers } = config;
       const resultConfig = { ...glocalConfig, ...config }; // 单个请求的配置覆盖全局的请求配置
-      resultConfig.headers = { ...headers, ...glocalHeaders }; // 全局配置的header覆盖单个请求的headers
-      resultConfig.paramsSerializer = handleParams;
+      resultConfig.headers = { ...headers, ...glocalHeaders }; // 全局配置的header覆盖单个请求的headers(这个比较特殊)
+      resultConfig.paramsSerializer = handleParams; // get请求参数格式化
       return resultConfig;
     },
     (error) => {

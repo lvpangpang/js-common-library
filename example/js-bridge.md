@@ -1,10 +1,10 @@
 # Js-bridge
 
-## 用例
+H5 与 App 端通信方法集合（ios+安卓）
 
-```javascript
-import React from 'react'
-import { jsBridge } from 'js-common-library'
+```js
+import React from "react";
+import { jsBridge } from "js-common-library";
 
 export default () => {
   return (
@@ -12,6 +12,6 @@ export default () => {
       <p>jsBridge对象输入详见控制台</p>
       <p>{console.log(jsBridge)}</p>
     </div>
-  )
-}
+  );
+};
 ```

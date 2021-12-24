@@ -1,24 +1,40 @@
 # Storage
 
-## 用例
+操作本地存储的函数
+
+## API
+
+| 方法          | 说明           | 参数                                 |
+| ------------- | -------------- | ------------------------------------ |
+| setStorage    | 设置存储值     | (name, value, type = 'localStorage') |
+| getStorage    | 获取存储的值   | (name, type = 'localStorage')        |
+| removeStorage | 清除某个存储值 | (name, type = 'localStorage')        |
+| clearStorage  | 清空存储       | (type = 'localStorage')              |
+
+## DEMOS
 
 ```javascript
-import React from 'react'
-import { setStorage, getStorage, removeStorage, clearStorage } from 'js-common-library'
+import React from "react";
+import {
+  setStorage,
+  getStorage,
+  removeStorage,
+  clearStorage,
+} from "js-common-library";
 
 export default () => {
   return (
     <div>
       输出见控制台
-      <p>{setStorage('name', '吕肥肥')}</p>
-      <p>{setStorage('info', { name: '吕肥肥', age: 8, sex: '男' })}</p>
-      <p>{setStorage('arr', [1,2,3])}</p>
-      <p>{console.log(getStorage('name'))}</p>
-      <p>{console.log(getStorage('info'))}</p>
-      <p>{console.log(getStorage('arr'))}</p>
-      <p>{console.log(removeStorage('arr'))}</p>
+      <p>{setStorage("name", "吕肥肥")}</p>
+      <p>{setStorage("info", { name: "吕肥肥", age: 8, sex: "男" })}</p>
+      <p>{setStorage("arr", [1, 2, 3])}</p>
+      <p>{console.log(getStorage("name"))}</p>
+      <p>{console.log(getStorage("info"))}</p>
+      <p>{console.log(getStorage("arr"))}</p>
+      <p>{console.log(removeStorage("arr"))}</p>
       <p>{console.log(clearStorage())}</p>
     </div>
-  )
-}
+  );
+};
 ```

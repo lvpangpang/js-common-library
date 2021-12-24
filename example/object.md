@@ -1,20 +1,29 @@
 # Object
 
-## 用例
+过滤对象（数组）中的指定值（默认指定值为 null， '', undefined）
 
-```javascript
-import React from 'react'
-import { omitValues } from 'js-common-library'
+## API
+
+| 方法       | 说明                                                            | 参数   |
+| ---------- | --------------------------------------------------------------- | ------ |
+| omitValues | 过滤对象（数组）中的指定值（默认指定值为 null， '', undefined） | Object |
+
+## DEMOS
+
+```js
+import React from "react";
+import { omitValues } from "js-common-library";
 
 export default () => {
   console.log(
     omitValues({
-      name: '吕肥肥',
+      name: "吕肥肥",
       age: undefined,
-      sex: '',
+      sex: "",
       you: null,
     })
-  )
-  return <div>object</div>
-}
+  );
+  console.log(omitValues([null, "", "吕肥肥"]));
+  return <div>object</div>;
+};
 ```

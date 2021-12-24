@@ -1,74 +1,90 @@
 # Http
 
-## 用例
+基于 axios 二次封装的请求，提供 setConfig 函数全局配置
 
-```jsx
-import React, { useEffect } from 'react'
-import { http } from 'js-common-library'
-http.defaults.timeout = 300;
+## API
+
+| 方法      | 说明                |
+| --------- | ------------------- |
+| setConfig | 设置 axios 全局配置 |
+
+其他方法请参考 axios 官网
+
+## DEMOS
+
+```js
+import React, { useEffect } from "react";
+import { http } from "js-common-library";
+
 http.setConfig({
-  baseURL: 'https://qa01web-gateway.lingxichuxing.com',
+  timeout: 500,
+  baseURL: "https://qa01web-gateway.lingxichuxing.com",
   headers: {
-    contextId: 'pms',
-    'skio-token':
-      'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJib3NzX2F1dGhfaXNzdWVyIiwiY29udGV4dElkIjoicG1zIiwiZXhwIjoxNjM0MTM4ODQxLCJ1c2VySWQiOjY1fQ.upPeT0OknNQe2L1Hi136lHwSfgFtMSRwWQMhPKlY5',
+    sourceId: "abc",
+    token: "123",
   },
   transformResult(result) {
-    const { code, data, msg } = result || {}
-    // 正常业务数据
+    const { code, data, msg } = result || {};
     if (code === 200) {
-      return data
+      return data;
     }
-    // 非正常业务情况提示错误msg
-    // alert(msg)
-    // 暴露出错误信息，有些特殊业务场景需要判断不同的错误码做对应的处理
-    return Promise.reject(result)
+    return Promise.reject(result);
   },
   error(e) {
-    console.log(e.message)
-    console.log('错误：' + e)
+    console.log("错误：" + e);
   },
-})
+});
 
 export default () => {
   useEffect(() => {
+    // get请求实例
     http
-      .get('/saas/v1/basic/dataTypes', {
-        params: {
-          name: '吕肥肥',
-          age: 18,
+      .get("/saas/v1/basic/dataTypes", {
+        headers: {
+          name: 123,
         },
-        timeout: 1000
+        params: {
+          name: "吕肥肥",
+          age: 18,
+          text: null,
+        },
+        timeout: 1000, // 请求单独配置超时时间
       })
       .then((data) => {
-        console.log('业务方接受到的数据：', data)
+        console.log("业务方接受到的数据：", data);
       })
       .catch((err) => {
-        console.log('业务方接受到的错误', err)
-      })
+        console.log("业务方接受到的错误", err);
+      });
+
+    // post请求实例
     http
       .post(
-        '/saas/v1/basic/dataTypes',
+        "/saas/v1/basic/dataTypes",
         {
-          name: '吕肥肥',
+          name: "吕肥肥",
           age: 18,
         },
         {
-          exId: '123',
+          headers: {
+            abc: 22,
+          },
+          exId: "123",
+          timeout: 2000, // 请求单独配置超时时间
         }
       )
       .then((data) => {
-        console.log('业务方接受到的数据：', data)
+        console.log("业务方接受到的数据：", data);
       })
       .catch((err) => {
-        console.log('业务方接受到的错误', err)
-      })
-  }, [])
+        console.log("业务方接受到的错误", err);
+      });
+  }, []);
   return (
     <div>
       <p>http配置实例</p>
       <p>请查看源代码以及控制台输出</p>
     </div>
-  )
-}
+  );
+};
 ```

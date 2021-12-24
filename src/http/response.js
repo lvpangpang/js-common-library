@@ -6,7 +6,7 @@ function response(http) {
       const { data, config } = res;
       const { transformResult } = config;
       let result = data;
-      result = isFun(transformResult) ? transformResult(data) : data;
+      result = isFun(transformResult) ? transformResult(data) : data; // 请求结果处理
       return result;
     },
     (err) => {

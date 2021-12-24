@@ -1,10 +1,20 @@
 # Math
 
-## 用例
+js 中和数学有关的方法
 
-```javascript
-import React from 'react'
-import { getRandomInt, getRandomNum, getRandomStr } from 'js-common-library'
+## API
+
+| 方法         | 说明                   | 参数            |
+| ------------ | ---------------------- | --------------- |
+| getRandomInt | 获取范围内的随机整数   | (min=0， max=0) |
+| getRandomNum | 获取范围内的随机数     | (min=0， max=0) |
+| getRandomStr | 获取范围内的随机字符串 | (len=32)        |
+
+## DEMOS
+
+```js
+import React from "react";
+import { getRandomInt, getRandomNum, getRandomStr } from "js-common-library";
 
 export default () => {
   return (
@@ -13,6 +23,6 @@ export default () => {
       <p>{console.log(getRandomNum(1, 100))}</p>
       <p>{console.log(getRandomStr())}</p>
     </div>
-  )
-}
+  );
+};
 ```
