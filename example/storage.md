@@ -13,7 +13,7 @@
 
 ## DEMOS
 
-```javascript
+```js
 import React from "react";
 import {
   setStorage,
