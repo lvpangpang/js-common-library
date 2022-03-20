@@ -1,9 +1,10 @@
 import { isStr } from '../data-type'
-export function setStorage(name, value, type = 'localStorage') {
+
+export function setStorage(name: any, value: any, type = 'localStorage') {
   if (!isStr(name)) {
     return
   }
-  const storage = window[type]
+  const storage = (window as any).type
   try {
     value = isStr(value) ? value : JSON.stringify(value)
     storage.setItem(name, value)
@@ -12,11 +13,11 @@ export function setStorage(name, value, type = 'localStorage') {
   }
 }
 
-export function getStorage(name, type = 'localStorage') {
+export function getStorage(name: any, type = 'localStorage') {
   if (!isStr(name)) {
     return undefined
   }
-  const storage = window[type]
+  const storage = (window as any).type
   try {
     let data = storage.getItem(name)
     return JSON.parse(data)
@@ -25,15 +26,15 @@ export function getStorage(name, type = 'localStorage') {
   }
 }
 
-export function removeStorage(name, type = 'localStorage') {
+export function removeStorage(name: any, type = 'localStorage') {
   if (!isStr(name)) {
     return undefined
   }
-  const storage = window[type]
+  const storage = (window as any).type
   storage.removeItem(name)
 }
 
 export function clearStorage(type = 'localStorage') {
-  const storage = window[type]
+  const storage = (window as any).type
   storage.clear()
 }

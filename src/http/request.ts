@@ -1,6 +1,6 @@
 // 去掉get请求中的null, '', undefined
-function handleParams(params) {
-  const list = [];
+function handleParams(params: { [x: string]: any }) {
+  const list: Array<any> = [];
   Object.keys(params || {}).forEach((key) => {
     const val = params[key];
     if (val === "" || val === null || val === undefined) {
@@ -11,10 +11,21 @@ function handleParams(params) {
   return list.join("&");
 }
 
-function request(http) {
+function request(http: {
+  interceptors: {
+    request: {
+      use: (
+        arg0: (config: any) => any,
+        arg1: (error: any) => Promise<never>
+      ) => void;
+    };
+  };
+  prototype: { glocalConfig: {
+    headers? : {}
+  } };
+}) {
   http.interceptors.request.use(
     (config) => {
-      // console.log(config); // 单个请求的配置
       const glocalConfig = http.prototype.glocalConfig || {};
       const glocalHeaders = glocalConfig.headers || {};
       const { headers } = config;

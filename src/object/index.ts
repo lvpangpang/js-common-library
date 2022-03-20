@@ -1,4 +1,4 @@
-export function omitValues(values, omitItems = ['', undefined, null]) {
+export function omitValues(values: any, omitItems?:any) {
   if (Array.isArray(values)) {
     return values.filter((item) => {
       return !omitItems.includes(item)
@@ -12,7 +12,7 @@ export function omitValues(values, omitItems = ['', undefined, null]) {
       value = value.trim()
     }
     if (!omitItems.includes(value)) {
-      result[item] = value
+      (result as any).item = value
     }
   })
 

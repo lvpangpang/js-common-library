@@ -1,5 +1,5 @@
-export function loadScript(url) {
-  return new Promise((resolve, reject) => {
+export function loadScript(url: string) {
+  return new Promise<void>((resolve, reject) => {
     if (!url) {
       return reject();
     }
@@ -9,7 +9,7 @@ export function loadScript(url) {
       return resolve();
     }
 
-    const script = document.createElement("script");
+    const script: HTMLScriptElement = document.createElement("script");
     script.src = url;
     document.body.appendChild(script);
     script.onload = () => {

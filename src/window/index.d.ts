@@ -1,1 +1,0 @@
-export declare function loadScript(url: string, globalVar: string);

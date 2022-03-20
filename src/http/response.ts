@@ -1,6 +1,15 @@
 import { isFun } from "../data-type";
 
-function response(http) {
+function response(http: {
+  interceptors: {
+    response: {
+      use: (
+        arg0: (res: any) => any,
+        arg1: (err: any) => Promise<never>
+      ) => void;
+    };
+  };
+}) {
   http.interceptors.response.use(
     (res) => {
       const { data, config } = res;
