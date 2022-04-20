@@ -32,8 +32,7 @@ export default () => {
       <p>{console.log(getStorage("name"))}</p>
       <p>{console.log(getStorage("info"))}</p>
       <p>{console.log(getStorage("arr"))}</p>
-      <p>{console.log(removeStorage("arr"))}</p>
-      <p>{console.log(clearStorage())}</p>
+
     </div>
   );
 };

@@ -1,5 +1,5 @@
 export function isObj(obj:any): boolean {
-  return Object.prototype.toString.call(obj) === "[object Object]";
+  return typeof obj === 'object' && obj !== null && !isArr(obj)
 }
 
 export function isEmptyObj(obj: any): boolean {
