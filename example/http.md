@@ -12,7 +12,7 @@
 
 ## DEMOS
 
-```js
+```jsx
 import React, { useEffect } from "react";
 import { http } from "js-common-library";
 
@@ -21,7 +21,7 @@ http.setConfig({
   baseURL: "https://qa01web-gateway.lingxichuxing.com",
   headers: {
     sourceId: "abc",
-    token: "123",
+    Token: "123",
   },
   transformResult(result) {
     const { code, data, msg } = result || {};
