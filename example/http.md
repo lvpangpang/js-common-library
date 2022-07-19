@@ -24,7 +24,8 @@ http.setConfig({
     Token: "123",
   },
   transformResult(result) {
-    const { code, data, msg } = result || {};
+    console.log(result)
+    const { code, data, msg } = result.data || {};
     if (code === 200) {
       return data;
     }
