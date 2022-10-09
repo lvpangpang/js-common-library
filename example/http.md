@@ -46,7 +46,7 @@ export default () => {
         },
         params: {
           name: "吕肥肥",
-          age: 18,
+          age: '',
           text: null,
         },
         timeout: 1000, // 请求单独配置超时时间

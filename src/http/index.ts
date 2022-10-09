@@ -1,8 +1,8 @@
-import axios, { AxiosInstance } from "axios";
-import request from './request'
-import response from './response'
+import axios from "axios"
+import request from "./request"
+import response from "./response"
 
-const instance: any = axios.create();
+const instance: any = axios.create()
 
 instance.setConfig = (glocalConfig = {}) => {
   instance.prototype.glocalConfig = glocalConfig
