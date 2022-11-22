@@ -6,13 +6,15 @@
 
 | 方法      | 说明                |
 | --------- | ------------------- |
-| setConfig | 设置 axios 全局配置 |
+| setConfig | 设置 axios 全局配置, 具体参考axios配置 |
+| setConfig.transformResult | 请求返回结果的全局处理函数 |
+| setConfig.error | 请求返回错误的全局处理函数 |
 
 其他方法请参考 axios 官网
 
 ## DEMOS
 
-```jsx
+```js
 import React, { useEffect } from "react";
 import { http } from "js-common-library";
 
@@ -24,7 +26,6 @@ http.setConfig({
     Token: "123",
   },
   transformResult(result) {
-    console.log(result)
     const { code, data, msg } = result.data || {};
     if (code === 200) {
       return data;
@@ -84,7 +85,6 @@ export default () => {
   return (
     <div>
       <p>http配置实例</p>
-      <p>请查看源代码以及控制台输出</p>
     </div>
   );
 };
