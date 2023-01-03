@@ -10,7 +10,7 @@ export function isEmptyObj(obj: any): boolean {
 }
 
 export function isNum(num: any): boolean {
-  return typeof num === "number"
+  return typeof num === "number" && !Number.isNaN(num)
 }
 
 export function isStr(str: any): boolean {
